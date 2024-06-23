@@ -17,7 +17,7 @@ const QuizScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.1.107:5000/api/quizzes/${quizId}`)
+      .get(`https://quizapp-backend-ml1y.onrender.com/api/quizzes/${quizId}`)
       .then((response) => setQuiz(response.data))
       .catch((error) => console.error(error));
   }, [quizId]);

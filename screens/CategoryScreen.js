@@ -16,7 +16,7 @@ const QuizListScreen = ({ navigation }) => {
     const fetchQuizzes = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.1.107:5000/api/quizzes"
+          "https://quizapp-backend-ml1y.onrender.com/api/quizzes"
         );
 
         setQuizzes(response.data);
