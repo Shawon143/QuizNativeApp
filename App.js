@@ -13,9 +13,16 @@ const App = () => {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          headerStyle: { backgroundColor: "#007AFF" },
-          headerTintColor: "#fff",
-          headerTitleStyle: { fontWeight: "bold" },
+          headerStyle: { backgroundColor: "#6200EE" },
+          headerTintColor: "#FFFFFF",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 20,
+            fontFamily: "Roboto",
+          },
+          headerBackTitleStyle: {
+            fontFamily: "Roboto",
+          },
         }}
       >
         <Stack.Screen

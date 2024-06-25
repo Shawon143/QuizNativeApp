@@ -1,4 +1,3 @@
-// HomeScreenStyles.js
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -6,25 +5,33 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f0f0f0",
+    padding: 20,
   },
   welcomeText: {
-    fontSize: 24,
-    color: "#333",
+    fontSize: 28,
+    color: "#FFFFFF",
     marginBottom: 20,
     fontWeight: "bold",
-    alignItems: "center",
+    fontFamily: "Roboto",
+    textAlign: "center",
   },
   button: {
-    backgroundColor: "#007AFF",
-    padding: 12,
-    borderRadius: 8,
-    width: "80%",
+    backgroundColor: "#03DAC6",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    width: "70%",
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
   buttonText: {
-    color: "#fff",
-    fontSize: 16,
+    color: "#FFFFFF",
+    fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "Roboto",
   },
 });

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import axios from "axios";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { LinearGradient } from "expo-linear-gradient"; // Import LinearGradient
 import styles from "../styles/QuizScreenStyles"; // Import the styles
 
 const QuizScreen = ({ route, navigation }) => {
@@ -93,12 +94,26 @@ const QuizScreen = ({ route, navigation }) => {
   };
 
   if (!quiz) {
-    return <Text style={styles.loadingText}>Loading...</Text>;
+    return (
+      <LinearGradient
+        colors={["#6200EE", "#03DAC6"]}
+        style={styles.container}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+      >
+        <Text style={styles.loadingText}>Loading...</Text>
+      </LinearGradient>
+    );
   }
 
   if (showResult) {
     return (
-      <View style={styles.container}>
+      <LinearGradient
+        colors={["#6200EE", "#03DAC6"]}
+        style={styles.container}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+      >
         <Text style={styles.resultText}>Quiz Completed!</Text>
         <Text style={styles.resultText}>
           Your Score: {score}/{quiz.questions.length}
@@ -109,13 +124,18 @@ const QuizScreen = ({ route, navigation }) => {
         >
           <Text style={styles.buttonText}>Back to Quiz List</Text>
         </TouchableOpacity>
-      </View>
+      </LinearGradient>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.quizTitle}>{quiz.title}</Text>
+    <LinearGradient
+      colors={["#6200EE", "#03DAC6"]}
+      style={styles.container}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+    >
+      {/* <Text style={styles.quizTitle}>{quiz.title}</Text> */}
       <Text style={styles.questionText}>
         {quiz.questions[currentQuestionIndex].question}
       </Text>
@@ -131,7 +151,7 @@ const QuizScreen = ({ route, navigation }) => {
         </AnimatedCircularProgress>
       </View>
       <View style={styles.optionsContainer}>{renderOptions()}</View>
-    </View>
+    </LinearGradient>
   );
 };
 

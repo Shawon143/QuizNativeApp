@@ -1,10 +1,8 @@
-// QuizScreenStyles.js
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f0f0",
     padding: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -12,19 +10,20 @@ export default StyleSheet.create({
   loadingText: {
     fontSize: 18,
     textAlign: "center",
+    color: "#fff", // Default text color for loading message
   },
   quizTitle: {
     fontSize: 24,
     marginBottom: 20,
     textAlign: "center",
     fontWeight: "bold",
-    color: "#333",
+    color: "#FFD700", // Gold color for quiz title
   },
   questionText: {
     fontSize: 18,
     marginBottom: 20,
     textAlign: "center",
-    color: "#555",
+    color: "#fff", // Text color for question text against the gradient background
   },
   timerContainer: {
     position: "absolute",
@@ -33,7 +32,7 @@ export default StyleSheet.create({
   },
   timerText: {
     fontSize: 18,
-    color: "#d9534f", // Red color for timer
+    color: "#FFD700", // Gold color for timer text against the gradient background
   },
   optionsContainer: {
     width: "100%",
@@ -41,16 +40,17 @@ export default StyleSheet.create({
   },
   optionButton: {
     width: "100%",
-    backgroundColor: "#007AFF",
     paddingVertical: 12,
     marginBottom: 10,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
+    borderWidth: 1, // Border width
+    borderColor: "#fff", // Border color (white)
   },
   optionText: {
     fontSize: 16,
-    color: "#fff",
+    color: "#fff", // Text color for option text against the gradient background
     fontWeight: "bold",
   },
   correctOption: {
@@ -64,7 +64,7 @@ export default StyleSheet.create({
     marginBottom: 10,
     textAlign: "center",
     fontWeight: "bold",
-    color: "#333",
+    color: "#fff", // Text color for result text against the gradient background
   },
   button: {
     backgroundColor: "#007AFF",

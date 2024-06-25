@@ -1,10 +1,9 @@
-// QuizListScreenStyles.js
 import { StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient"; // Import LinearGradient
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
     padding: 10,
   },
   loadingContainer: {
@@ -12,35 +11,62 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  quizItem: {
-    backgroundColor: "#ffffff",
-    padding: 15,
-    marginVertical: 5,
-    borderRadius: 5,
+  loadingText: {
+    fontSize: 18,
+    color: "#6200EE",
+    fontFamily: "Roboto",
+  },
+  quizItemContainer: {
+    marginVertical: 8,
+    borderRadius: 10,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
-    elevation: 2,
+    elevation: 3,
+    overflow: "hidden",
+  },
+  quizItem: {
+    padding: 15,
+    alignItems: "center",
+    borderRadius: 10,
   },
   quizTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
+    color: "#FFFFFF",
+    fontFamily: "Roboto",
   },
   sectionHeader: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
-    backgroundColor: "#efefef",
+    marginTop: 15,
+    marginBottom: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 8,
+    overflow: "hidden",
+    color: "white",
+  },
+  sectionHeaderGradient: {
+    flex: 1,
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  sectionHeaderText: {
+    fontSize: 15,
     fontStyle: "italic",
-    color: "grey",
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#FFFFFF", // Text color inside the gradient background
+    backgroundColor: "transparent",
   },
   noQuizzesText: {
     textAlign: "center",
     marginTop: 20,
     fontSize: 16,
     color: "#666",
+    fontFamily: "Roboto",
   },
 });

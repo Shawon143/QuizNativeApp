@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, SectionList } from "react-native";
 import axios from "axios";
 import RNPickerSelect from "react-native-picker-select";
 import { format, parse } from "date-fns";
+import { LinearGradient } from "expo-linear-gradient"; // Import LinearGradient
 import styles from "../styles/QuizListScreenStyles";
 
 const QuizListScreen = ({ navigation }) => {
@@ -87,13 +88,18 @@ const QuizListScreen = ({ navigation }) => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <Text>Loading...</Text>
+        <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={["#6200EE", "#03DAC6"]}
+      style={styles.container}
+      start={[0, 0]}
+      end={[2, 1]}
+    >
       <RNPickerSelect
         onValueChange={(value) => setSelectedCategory(value)}
         items={categories}
@@ -105,12 +111,20 @@ const QuizListScreen = ({ navigation }) => {
         <SectionList
           sections={groupQuizzesByDate(filterQuizzesByCategory())}
           keyExtractor={(item) => item._id.toString()}
+          showsVerticalScrollIndicator={true} // Add this line
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={styles.quizItem}
+              style={styles.quizItemContainer}
               onPress={() => navigation.navigate("Quiz", { quizId: item._id })}
             >
-              <Text style={styles.quizTitle}>{item.title}</Text>
+              <LinearGradient
+                colors={["#6200EE", "#03DAC6"]}
+                style={styles.quizItem}
+                start={[0, 0]}
+                end={[2, 5]}
+              >
+                <Text style={styles.quizTitle}>{item.title}</Text>
+              </LinearGradient>
             </TouchableOpacity>
           )}
           renderSectionHeader={({ section: { title } }) => (
@@ -120,7 +134,7 @@ const QuizListScreen = ({ navigation }) => {
       ) : (
         <Text style={styles.noQuizzesText}>No quizzes available</Text>
       )}
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -130,11 +144,11 @@ const pickerSelectStyles = {
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#6200EE",
     borderRadius: 4,
     color: "black",
     paddingRight: 30, // to ensure the text is never behind the icon
-    backgroundColor: "white", // background color of the input
+    backgroundColor: "#FFFFFF", // background color of the input
     marginBottom: 10, // space between the input and the SectionList
   },
   inputAndroid: {
@@ -142,11 +156,11 @@ const pickerSelectStyles = {
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 0.5,
-    borderColor: "purple",
+    borderColor: "#6200EE",
     borderRadius: 8,
     color: "black",
     paddingRight: 30, // to ensure the text is never behind the icon
-    backgroundColor: "white", // background color of the input
+    backgroundColor: "#FFFFFF", // background color of the input
     marginBottom: 10, // space between the input and the SectionList
   },
   iconContainer: {
@@ -154,7 +168,7 @@ const pickerSelectStyles = {
     right: 12,
   },
   placeholder: {
-    color: "#333",
+    color: "#666",
   },
 };
 
