@@ -18,10 +18,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/splash1.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rohan646.BrainBusterr",
+      "usesCleartextTraffic": true 
     },
     "web": {
       "favicon": "./assets/splash1.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a4d377ad-8a46-448a-bf94-a54dcb3b56a8"
+      }
     }
   }
 }
