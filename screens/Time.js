@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import axios from "axios";
-import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { LinearGradient } from "expo-linear-gradient";
-import styles from "../styles/QuizScreenStyles";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 
 const QuizScreen = ({ route, navigation }) => {
   const { quizId } = route.params;
@@ -17,18 +16,10 @@ const QuizScreen = ({ route, navigation }) => {
   const timerRef = useRef(null);
 
   useEffect(() => {
-    const fetchQuiz = async () => {
-      try {
-        const response = await axios.get(
-          `https://quizapp-backend-ml1y.onrender.com/api/quizzes/${quizId}`
-        );
-        setQuiz(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchQuiz();
+    axios
+      .get(`https://quizapp-backend-ml1y.onrender.com/api/quizzes/${quizId}`)
+      .then((response) => setQuiz(response.data))
+      .catch((error) => console.error(error));
   }, [quizId]);
 
   useEffect(() => {
@@ -160,6 +151,64 @@ const QuizScreen = ({ route, navigation }) => {
   );
 };
 
-export default QuizScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  loadingText: {
+    fontSize: 20,
+    color: "#FFFFFF",
+  },
+  questionText: {
+    fontSize: 22,
+    color: "#FFFFFF",
+    textAlign: "center",
+    margin: 20,
+  },
+  timerContainer: {
+    margin: 20,
+  },
+  timerText: {
+    fontSize: 18,
+    color: "#FFFFFF",
+  },
+  optionsContainer: {
+    width: "80%",
+  },
+  optionButton: {
+    padding: 15,
+    borderRadius: 5,
+    backgroundColor: "#FFFFFF",
+    marginVertical: 10,
+  },
+  optionText: {
+    fontSize: 18,
+    color: "#6200EE",
+  },
+  correctOption: {
+    backgroundColor: "#00FF00",
+  },
+  incorrectOption: {
+    backgroundColor: "#FF0000",
+  },
+  resultText: {
+    fontSize: 22,
+    color: "#FFFFFF",
+    textAlign: "center",
+    margin: 20,
+  },
+  button: {
+    padding: 15,
+    borderRadius: 5,
+    backgroundColor: "#6200EE",
+    marginVertical: 10,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "#FFFFFF",
+  },
+});
 
-// save previous code
+export default QuizScreen;

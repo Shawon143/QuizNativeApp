@@ -18,6 +18,26 @@ const HomeScreen = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Start Quiz</Text>
       </TouchableOpacity>
+
+      {/* <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("api")}
+      >
+        <Text style={styles.buttonText}>Start api</Text>
+      </TouchableOpacity> */}
+
+      {/* <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("rnp")}
+      >
+        <Text style={styles.buttonText}>rnp api</Text>
+      </TouchableOpacity> */}
+      {/* <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Test")}
+      >
+        <Text style={styles.buttonText}>test time</Text>
+      </TouchableOpacity> */}
     </LinearGradient>
   );
 };

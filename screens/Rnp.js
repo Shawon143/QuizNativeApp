@@ -8,35 +8,28 @@ import {
   ActivityIndicator,
 } from "react-native";
 import axios from "axios";
-import RNPickerSelect from "react-native-picker-select";
-import { format, parse } from "date-fns";
+// import RNPickerSelect from "react-native-picker-select";
+import { format, parse } from "date-fns"; // Ensure date-fns is installed
 import { LinearGradient } from "expo-linear-gradient";
 
-const QuizListScreen = ({ navigation }) => {
+const Rnp = ({ navigation }) => {
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState("Select a Category");
-  const [categories, setCategories] = useState([
-    { label: "Select a Category", value: "Select a Category" },
-  ]);
+  // const [selectedCategory, setSelectedCategory] = useState("Select a Category");
+  // const [categories, setCategories] = useState([{ label: "Select a Category", value: "Select a Category" }]);
 
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        // console.log("Fetching quizzes...");
+        console.log("Fetching quizzes...");
         const response = await axios.get(
           "https://quizapp-backend-ml1y.onrender.com/api/quizzes"
         );
-        // console.log("Fetched quizzes data:", response.data);
+        console.log("Fetched quizz done:");
         setQuizzes(response.data);
-        const uniqueCategories = [
-          ...new Set(response.data.map((quiz) => quiz.category)),
-        ];
-        const formattedCategories = uniqueCategories.map((category) => ({
-          label: category,
-          value: category,
-        }));
-        setCategories([{ label: "All", value: "All" }, ...formattedCategories]);
+        // const uniqueCategories = [...new Set(response.data.map((quiz) => quiz.category))];
+        // const formattedCategories = uniqueCategories.map((category) => ({ label: category, value: category }));
+        // setCategories([{ label: "All", value: "All" }, ...formattedCategories]);
       } catch (error) {
         console.error("Error fetching quizzes:", error.message);
       } finally {
@@ -48,13 +41,13 @@ const QuizListScreen = ({ navigation }) => {
   }, []);
 
   const filterQuizzesByCategory = () => {
-    if (selectedCategory === "All") {
-      return quizzes;
-    } else {
-      return selectedCategory === "Select a Category"
-        ? quizzes
-        : quizzes.filter((quiz) => quiz.category === selectedCategory);
-    }
+    // if (selectedCategory === "All") {
+    return quizzes;
+    // } else {
+    // return selectedCategory === "Select a Category"
+    // ? quizzes
+    // : quizzes.filter((quiz) => quiz.category === selectedCategory);
+    // }
   };
 
   const groupQuizzesByDate = (quizzes) => {
@@ -106,16 +99,13 @@ const QuizListScreen = ({ navigation }) => {
       start={[0, 0]}
       end={[2, 1]}
     >
-      <RNPickerSelect
-        onValueChange={(value) => {
-          console.log("Selected value:", value);
-          setSelectedCategory(value);
-        }}
+      {/* <RNPickerSelect
+        onValueChange={(value) => setSelectedCategory(value)}
         items={categories}
         placeholder={{ label: "Select a Category", value: "Select a Category" }}
         style={pickerSelectStyles}
         value={selectedCategory}
-      />
+      /> */}
       {quizzes.length > 0 ? (
         <SectionList
           sections={groupQuizzesByDate(filterQuizzesByCategory())}
@@ -123,6 +113,7 @@ const QuizListScreen = ({ navigation }) => {
           showsVerticalScrollIndicator={true}
           renderItem={({ item }) => (
             <TouchableOpacity
+              style={styles.quizItemContainer}
               onPress={() => navigation.navigate("Quiz", { quizId: item._id })}
             >
               <LinearGradient
@@ -150,7 +141,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    // alignItems: "center",
+    alignItems: "center",
     padding: 20,
   },
   loadingContainer: {
@@ -164,12 +155,11 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   quizItemContainer: {
-    padding: 0,
+    padding: 20,
     marginVertical: 8,
     backgroundColor: "#f9f9f9",
     borderRadius: 10,
     width: "100%",
-    border: 10,
   },
   quizItem: {
     padding: 20,
@@ -177,21 +167,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#f9f9f9",
     borderRadius: 10,
     width: "100%",
-    border: 10,
   },
   quizTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    border: 10,
-    color: "white",
-    textAlign: "center",
   },
   sectionHeader: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: "bold",
     marginTop: 10,
-
-    color: "white",
   },
   noQuizzesText: {
     fontSize: 18,
@@ -200,31 +184,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const pickerSelectStyles = {
-  inputIOS: {
-    fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: "#6200EE",
-    borderRadius: 4,
-    color: "black",
-    paddingRight: 30,
-    backgroundColor: "#FFFFFF",
-    marginBottom: 10,
-  },
-  inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: "#6200EE",
-    borderRadius: 8,
-    color: "black",
-    paddingRight: 30,
-    backgroundColor: "#FFFFFF",
-    marginBottom: 10,
-  },
-};
-
-export default QuizListScreen;
+export default Rnp;
